@@ -241,6 +241,79 @@ class LinkedList{
         this.size ++;
 
     }
+    // Move Min to Front
+    // Create a standalone function that locates the minimum value in a linked list, and moves that
+    // node to the front of the list. Return the new list,with all nodes still present, and all (except for
+    // the new head node) in their original order
+
+    //****was not able to optimize********/
+    minToFront=()=>{
+        //edge case
+        if(this.size <=1){
+            return;
+        }
+        //setting value to head data
+        let value=this.head.data;
+        //setting a 'runner'
+        let current = this.head;
+        //setting 'walker' and a temp variable to hold the node which has the least value
+        let previous, temp;
+        //first loop finds the smallest value and saves it to value variable
+        while(current){
+            if(current.data<value){
+                value = current.data;
+            }
+            previous = current;
+            current = current.next;
+        }
+        //reseting current to the head
+        current = this.head;
+        //second loop takes current to the node with the smallest value
+        while(current!== temp && current.next !==null){
+            previous = current;
+            current = current.next;
+        }
+        //Decouples current and links previous and the current.next
+        previous.next = current.next;
+        //make head a new node with the least value
+        this.head = new Node(value, this.head)
+        console.log("###########")
+        return;
+    }
+
+    maxToFront=()=>{
+        //edge case
+        if(this.size <=1){
+            return;
+        }
+        //setting value to head data
+        let value=this.head.data;
+        //setting a 'runner'
+        let current = this.head;
+        //setting 'walker' and a temp variable to hold the node which has the highest value
+        let previous, temp;
+        //first loop finds the highest value and saves it to value variable
+        while(current){
+            if(current.data>value){
+                value = current.data;
+            }
+            previous = current;
+            current = current.next;
+        }
+        //reseting current to the head
+        current = this.head;
+        //second loop takes current to the node with the highest value
+        while(current!== temp && current.next !==null){
+            previous = current;
+            current = current.next;
+        }
+        //Decouples current and links previous and the current.next
+        previous.next = current.next;
+        //make head a new node with the highest value
+        this.head = new Node(value, this.head)
+        console.log("###########")
+        return;
+    }
 
     // Added method to help debug
     printList=()=>{
@@ -253,19 +326,33 @@ class LinkedList{
 }
 
 const newLL = new LinkedList();
-newLL.addToFront("John");
-newLL.addToFront("Ted");
-newLL.addToFront("Jen");
-newLL.addToFront("Rod");
+// newLL.addToFront("John");
+// newLL.addToFront("Ted");
+// newLL.addToFront("Jen");
+// newLL.addToFront("Rod");
+// newLL.printList();
+// newLL.removefromFront();
+// newLL.printList();
+// console.log(newLL.contains("John"));
+// console.log(newLL.frontData());
+// console.log(newLL.backData());
+// newLL.removeLastNode();
+// newLL.addToBack("Felix");
+newLL.addToFront(700)
+newLL.addToFront(40)
+newLL.addToFront(20)
+newLL.addToFront(50)
+newLL.addToFront(15)
+newLL.addToFront(16)
+newLL.addToFront(17)
+newLL.addToFront(18)
+newLL.addToFront(19)
+newLL.addToFront(60)
 newLL.printList();
-newLL.removefromFront();
+// newLL.minToFront();
+newLL.maxToFront();
 newLL.printList();
-console.log(newLL.contains("John"));
-console.log(newLL.frontData());
-console.log(newLL.backData());
-newLL.removeLastNode();
-newLL.addToBack("Felix");
-newLL.printList();
+
 
 
 
